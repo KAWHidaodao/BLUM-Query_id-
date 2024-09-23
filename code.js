@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Telegram Query ID Scraper with Copy Box
+// @name         Telegram Query ID Scraper with Copy Box and Delay
 // @namespace    http://tampermonkey.net/
-// @version      1.3
-// @description  抓取telegram.blum.codes网站上的sessionStorage中的query_id并通过页面文本框手动复制
+// @version      1.4
+// @description  抓取telegram.blum.codes网站上的sessionStorage中的query_id，延迟5秒并通过页面文本框手动复制
 // @author       You
 // @match        https://telegram.blum.codes/*
 // @grant        none
@@ -11,8 +11,8 @@
 (function() {
     'use strict';
 
-    // 确保页面加载完成后执行脚本
-    window.addEventListener('load', function() {
+    // 设置延迟，5秒后运行代码
+    setTimeout(function() {
         // 尝试获取 sessionStorage 中的 query_id
         const queryId = sessionStorage.getItem('query_id');
 
@@ -64,5 +64,6 @@
             console.log('No Query ID found in sessionStorage.');
             alert('No Query ID found in sessionStorage.');
         }
-    });
+    }, 5000); // 延迟5秒（5000毫秒）后运行代码
+
 })();
